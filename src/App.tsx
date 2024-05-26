@@ -5,9 +5,9 @@ import webserviceClient from "./utils/WebserviceClient.tsx";
 function App() {
     const [count, setCount] = useState(0)
     const [input, setInput] = useState('')
-    //const [greeting, replaceText] = useState('Click me to replace my text')
     const [text, appendText] = useState('Click me to append my text')
     const getGreeting = () => webserviceClient.getGreetingWithName(input)
+    const getHtml = () => webserviceClient.getHtml(input)
 
     return (
         <>
@@ -17,6 +17,7 @@ function App() {
                 <label>
                     Enter your name: <input
                     className={"greeting-input"}
+                    id={"greeting-input"}
                     value={input}
                     onChange={e => setInput(e.target.value)}
                 />
@@ -26,15 +27,13 @@ function App() {
                     {text}
                 </button>
                 <br/><br/>
-                {/*
-                <button disabled={input.length == 0} onClick={() => replaceText((greeting) => webserviceClient.getGreetingWithName(input))}>
-                    {greeting}
-                </button>
-                <br/><br/> */}
                 <button disabled={input.length == 0} onClick={getGreeting}>
                     Click me to get a greeting message
                 </button>
-
+                <br/><br/>
+                <button disabled={input.length == 0} onClick={getHtml}>
+                    Click me to download an HTML file
+                </button>
             </div>
 
             <div className="example">
